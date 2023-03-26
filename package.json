@@ -1,0 +1,15 @@
+{
+  "name": "kakashi-hatake-ai-bot",
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish"
+  },
+  "dependencies": {
+    "grammy": "^1.15.3"
+  },
+  "devDependencies": {
+    "wrangler": "2.13.0",
+    "@cloudflare/workers-types": "^3.16.0"
+  }
+}

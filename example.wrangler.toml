@@ -1,0 +1,11 @@
+account_id = "account_id"
+name = "project_name"
+main = "src/index.js"
+compatibility_date = "2023-03-24"
+kv_namespaces = [
+  { binding = "DB", id = "namespace_id" }
+]
+
+[vars]
+BOT_TOKEN = "telegram_bot_token"
+OPENAI_TOKEN = "openai_api_key"
