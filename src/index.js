@@ -3,7 +3,6 @@
 import { Bot, webhookCallback } from "grammy/web";
 import { stringify, str } from "./utils";
 import { request } from "./openai";
-import { klona } from "klona/json";
 
 const bot = new Bot(BOT_TOKEN, {
   botInfo: {
