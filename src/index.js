@@ -1,6 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 
 import { Bot, webhookCallback } from "grammy/web";
+import { stringify, str } from "./utils";
 import { request } from "./openai";
 
 const bot = new Bot(BOT_TOKEN, {
@@ -65,7 +66,7 @@ bot.command("start", async (ctx) => {
 
 bot.on("message:text", async (ctx) => {
   const { text: input, chat, from, reply_to_message, message_id } = ctx.message;
-  const chat_id = chat.id.toString();
+  const chat_id = str(chat.id);
 
   /**
    * Ignore
@@ -107,7 +108,7 @@ bot.on("message:text", async (ctx) => {
     /**
      * Сохраняет переписку в базу данных
      */
-    return await db.put(chat_id, JSON.stringify(current));
+    return await db.put(chat_id, stringify(current));
   }
 
   const response = await request(...setup, ...current);
@@ -120,7 +121,7 @@ bot.on("message:text", async (ctx) => {
     content,
   });
 
-  await db.put(chat_id, JSON.stringify(current));
+  await db.put(chat_id, stringify(current));
 
   return await ctx.reply(content.slice(3), {
     allow_sending_without_reply: true,
@@ -131,7 +132,7 @@ bot.on("message:text", async (ctx) => {
 
 bot.on("message:left_chat_member:me", async (ctx) => {
   const { chat } = ctx.message;
-  const chat_id = chat.id.toString();
+  const chat_id = str(chat.id);
 
   return await db.delete(chat_id);
 });

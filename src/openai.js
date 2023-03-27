@@ -1,4 +1,4 @@
-const { stringify } = JSON;
+import { stringify } from "./utils";
 
 /**
  * Make a request using "gpt-3.5-turbo" model
