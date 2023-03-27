@@ -131,6 +131,7 @@ bot.on("message:text", async (ctx) => {
 
 bot.on("message:left_chat_member:me", async (ctx) => {
   const { chat } = ctx.message;
+  const chat_id = chat.id.toString();
 
   return await db.delete(chat_id);
 });
